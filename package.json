@@ -11,9 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Om7083/urlShortner.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",   
+  "author": "Vikas Yadav, Navdeep Sharma, Debasish Behera, Omprakash Dhanurkar khemchand",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Om7083/urlShortner/issues"
   },

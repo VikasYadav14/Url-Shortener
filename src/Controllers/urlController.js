@@ -46,10 +46,10 @@ const createShortUrl = async function (req, res) {
             let urlDetails = await urlModel.create({ longUrl: longUrl, shortUrl: shortUrl, urlCode: urlCode })
             await SET_ASYNC(`${urlCode}`,3600, JSON.stringify(urlDetails))
             let filter = { urlCode: urlDetails.urlCode, longUrl: urlDetails.longUrl, shortUrl: urlDetails.shortUrl }
-            return res.status(201).send({ status: true, data: filter })
+            return res.status(201).send({ status: true, message:"ShortUrl is created successfully", data: filter })
         }
 
-        return res.status(200).send({ status: true, data: checkUrl })
+        return res.status(200).send({ status: true, message: "LongUrl is already shorted", data: checkUrl })
 
     } catch (err) {
         return res.status(500).send({ status: false, message: err.message })
@@ -59,8 +59,6 @@ const createShortUrl = async function (req, res) {
 const getShortUrl = async function (req, res) {
     try {
         let urlCode = req.params.urlCode
-
-        if (!urlCode) return res.status(400).send({ status: false, message: "urlCode is mandatory" })
 
         let cachedData = await GET_ASYNC(`${urlCode}`)
         if (cachedData) {
